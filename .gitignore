@@ -1,0 +1,61 @@
+# Terraform working directory
+**/.terraform/*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Terraform plan files
+*.tfplan
+tfplan
+
+# Terraform variable files
+*.tfvars
+!*.tfvars.example
+
+# Terraform crash and override files
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform lock information should normally be committed
+# .terraform.lock.hcl is intentionally not ignored
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Environment and credential files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# AWS credentials
+.aws/
+
+# Execution output
+logs/*
+!logs/.gitkeep
+
+reports/*
+!reports/.gitkeep
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

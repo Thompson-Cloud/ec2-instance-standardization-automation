@@ -1,0 +1,26 @@
+aws:
+  region: us-east-1
+  profile: default
+
+filters:
+  Application: inventory-platform
+  Environment: production
+  ManagedBy: terraform
+
+change:
+  source_instance_type: t3.micro
+  target_instance_type: t3.small
+  expected_instance_count: 15
+
+execution:
+  dry_run: false
+  require_confirmation: true
+  canary_instance_name: inventory-api-05
+  batch_size: 3
+  rollback_on_failure: true
+  stop_on_failure: true
+
+timeouts:
+  stop_wait: 300
+  start_wait: 300
+  status_wait: 600
