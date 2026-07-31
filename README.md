@@ -4,9 +4,9 @@
 ![AWS](https://img.shields.io/badge/AWS-EC2%20%7C%20STS-FF9900?style=for-the-badge&logo=amazonaws)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-A Python automation solution that safely standardizes an existing fleet of Amazon EC2 instances using AWS APIs, fleet validation, canary deployment, and configurable batch processing.
+Production-ready Python automation for safely standardizing Amazon EC2 instances using AWS APIs, fleet validation, canary deployment, and configurable batch processing.
 
-### Solution Architecture
+## Solution Architecture
 
 The diagram below illustrates the end-to-end workflow of the EC2 instance standardization process.
 
@@ -18,9 +18,10 @@ The diagram below illustrates the end-to-end workflow of the EC2 instance standa
 
 Managing infrastructure changes across multiple Amazon EC2 instances manually can be slow, error-prone, and difficult to audit.
 
-This project automates EC2 instance standardization using Python and the AWS SDK (Boto3). It discovers target instances through AWS resource tags, validates the fleet, performs a canary deployment followed by configurable batch processing, and generates structured reports for auditing and troubleshooting.
+This project automates EC2 instance standardization using Python and the AWS SDK (Boto3). It discovers target instances through AWS resource tags, validates the target fleet, executes a canary deployment followed by configurable batch processing, and generates structured reports for auditing, compliance, and troubleshooting.
 
 The automation is designed to operate against an existing AWS environment. Terraform is included to provision a reproducible demonstration environment for development, testing, and validation.
+
 ---
 
 ## Engineering Decisions
@@ -138,17 +139,23 @@ Then run:
 python resize_instances.py
 ```
 ---
-## Execution Results
+## Execution Validation
 
 ### Successful Fleet Standardization
 
-![Execution](assets/successful-execution.png)
+The automation successfully authenticated with AWS, discovered all tagged EC2 instances, validated the fleet, executed a canary deployment followed by batch processing, and completed the standardization workflow
+
+![Successful Execution](assets/successful-execution.png)
+
+### Generated Audit Reports
+
+The automation generates timestamped CSV, JSON, and Markdown reports containing execution status, original and target instance types, timestamps, rollback state, and error details for auditing and troubleshooting.
+
+![Generated Reports](assets/generated-reports.png)
 
 ### AWS Console Verification
 
 ![AWS Console](assets/aws-console-verification.png)
-
----
 
 ## Documentation
 
@@ -163,12 +170,6 @@ Detailed technical documentation is available in the `docs/` directory.
 | Reporting               | Generated reports and logging                  |
 | Troubleshooting         | Common issues and resolutions                  |
 | Design Decisions        | Key engineering decisions and trade-offs       |
-
----
-
-## License
-
-This project is licensed under the MIT License.
 
 ---
 
