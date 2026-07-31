@@ -49,23 +49,26 @@ This project was designed with production-inspired operational practices in mind
 8. Verify successful completion
 9. Generate execution reports
 
-...
 ---
 
 ## Key Features
 
+### Automation
 - Tag-based EC2 discovery
 - YAML-driven configuration
-- AWS authentication using STS and Boto3
 - Fleet validation before execution
 - Dry Run mode
 - Canary deployment strategy
-- Configurable batch processing
-- Automatic fleet verification
-- CSV, JSON and Markdown reporting
-- Comprehensive execution logging
-- Modular Python architecture
+- Configurable batch execution
 
+### Reliability
+- Automatic fleet verification
+- Comprehensive execution logging
+- CSV, JSON, and Markdown reporting
+
+### Architecture
+- Modular Python architecture
+- AWS authentication using STS and Boto3
 ---
 
 ## Technology Stack
