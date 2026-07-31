@@ -5,10 +5,9 @@
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 A Python automation solution that safely standardizes an existing fleet of Amazon EC2 instances using AWS APIs, fleet validation, canary deployment, and configurable batch processing.
-
 ---
 
-## Solution Architecture
+### Solution Architecture
 
 The diagram below illustrates the end-to-end workflow of the EC2 instance standardization process.
 

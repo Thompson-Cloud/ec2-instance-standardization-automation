@@ -13,7 +13,7 @@ change:
   expected_instance_count: 15
 
 execution:
-  dry_run: false
+  dry_run: true
   require_confirmation: true
   canary_instance_name: inventory-api-05
   batch_size: 3
