@@ -1,14 +1,11 @@
-# 🚀 Production EC2 Instance Standardization Automation
+# Production EC2 Fleet Standardization Automation
+
+This project demonstrates a production-inspired workflow for safely standardizing Amazon EC2 fleets using Python and AWS Boto3. 
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python)
 ![AWS](https://img.shields.io/badge/AWS-EC2%20%7C%20STS-FF9900?style=for-the-badge&logo=amazonaws)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-
-Production-ready Python automation for safely standardizing Amazon EC2 instances using AWS APIs, fleet validation, canary deployment, and configurable batch processing.
 
 ## Solution Architecture
-
-The diagram below illustrates the end-to-end workflow of the EC2 instance standardization process.
 
 ![Architecture](assets/architecture.png)
 
@@ -16,28 +13,26 @@ The diagram below illustrates the end-to-end workflow of the EC2 instance standa
 
 ## Overview
 
-Managing infrastructure changes across multiple Amazon EC2 instances manually can be slow, error-prone, and difficult to audit.
+Infrastructure changes become increasingly risky as environments scale.
 
-This project automates EC2 instance standardization using Python and the AWS SDK (Boto3). It discovers target instances through AWS resource tags, validates the target fleet, executes a canary deployment followed by configurable batch processing, and generates structured reports for auditing, compliance, and troubleshooting.
-
-The automation is designed to operate against an existing AWS environment. Terraform is included to provision a reproducible demonstration environment for development, testing, and validation.
+Although modifying a single EC2 instance is relatively straightforward, applying the same operational change consistently across an entire fleet introduces challenges around validation, deployment safety, observability, and repeatability.
 
 ---
 
-## Engineering Decisions
+## Engineering Principles
 
-This project was designed with production-inspired operational practices in mind, including:
+The automation was designed around operational engineering principles rather than simply automating API calls.
 
-- Dynamic EC2 discovery using AWS resource tags
-- Configuration-driven execution with YAML
-- Dry Run validation before infrastructure changes
-- Canary-first deployment strategy
-- Configurable batch processing to reduce operational risk
-- Post-deployment verification
-- Structured reporting for auditability
-- Modular Python architecture for maintainability and extensibility
+- Safety before speed
+- Fail-fast validation
+- Canary-first deployment
+- Configuration-driven execution
+- Separation of infrastructure and operations
+- Modular architecture
+- Operational observability
+- Repeatable execution
 
-## How It Works
+## Operational Workflow
 
 1. Load configuration from `config.yaml`
 2. Authenticate with AWS
@@ -61,7 +56,7 @@ This project was designed with production-inspired operational practices in mind
 - Canary deployment strategy
 - Configurable batch execution
 
-### Reliability
+### Operational Safety
 - Automatic fleet verification
 - Comprehensive execution logging
 - CSV, JSON, and Markdown reporting
@@ -74,41 +69,37 @@ This project was designed with production-inspired operational practices in mind
 ## Technology Stack
 
 | Category | Technology |
-|------------|------------|
+|----------|------------|
 | Language | Python |
-| Cloud | AWS |
+| Cloud Platform | AWS |
+| AWS SDK | Boto3 |
 | AWS Services | EC2, STS |
-| SDK | Boto3 |
 | Configuration | YAML |
-| Infrastructure | Terraform *(Demo Environment)* |
-| Reporting | CSV, JSON, Markdown |
 | Logging | Python Logging |
-
----
-
-## Repository Structure
+| Reporting | CSV, JSON, Markdown |
+| Supporting Infrastructure | Terraform *(Demonstration Environment)* |
 
 ## Repository Structure
 
 ```text
 .
-├── automation/          # Core automation engine
-├── infrastructure/      # Terraform demo environment
-├── assets/              # README images
-├── docs/                # Technical documentation
+├── automation/          # EC2 fleet standardization engine
+├── assets/              # Architecture diagrams and execution screenshots
+├── docs/                # Engineering design documentation
+├── infrastructure/      # Terraform demonstration environment
 ├── requirements.txt
 └── README.md
 ```
----
 
-## Running the Project
+---
+## Deployment
 
 ### Prerequisites
 
 - Python 3.11+
 - AWS CLI configured
 - Valid AWS credentials
-- Existing AWS environment (or the included Terraform demo environment)
+- An AWS account containing EC2 instances matching the configured resource tags, or the included Terraform demonstration environment.
 
 ### Install Dependencies
 
@@ -120,11 +111,13 @@ pip install -r requirements.txt
 
 Update `config.yaml` with your AWS Region, target EC2 tags, desired instance type, batch size, and execution mode.
 
-### Execute
+
+## Execution
 
 Dry Run:
 
 ```bash
+cd automation
 python resize_instances.py
 ```
 
@@ -139,10 +132,11 @@ dry_run: false
 Then run:
 
 ```bash
+cd automation
 python resize_instances.py
 ```
 ---
-## Execution Validation
+## Operational Validation
 
 ### Successful Fleet Standardization
 
@@ -160,22 +154,51 @@ The automation generates timestamped CSV, JSON, and Markdown reports containing 
 
 ![AWS Console](assets/aws-console-verification.png)
 
-## Documentation
 
-Detailed technical documentation is available in the `docs/` directory.
+## Engineering Trade-offs
 
-| Document                | Purpose                                        |
-| ----------------------- | ---------------------------------------------- |
-| Architecture            | System architecture and component interactions |
-| Deployment Guide        | Environment setup and prerequisites            |
-| Execution Workflow      | End-to-end automation lifecycle                |
-| Configuration Reference | Configuration options and examples             |
-| Reporting               | Generated reports and logging                  |
-| Troubleshooting         | Common issues and resolutions                  |
-| Design Decisions        | Key engineering decisions and trade-offs       |
+| Decision | Benefit | Trade-off |
+|----------|----------|-----------|
+| Canary deployment | Reduced deployment risk | Longer execution |
+| Sequential batches | Easier troubleshooting | Increased runtime |
+| Structured reports | Better auditability | Additional storage |
+| Modular architecture | Maintainability | More project structure |
 
----
 
-## Further Reading
+## Failure Scenarios
 
-Comprehensive project documentation, design decisions, implementation details, and deployment guidance are available in the `docs/` directory.
+The automation intentionally terminates before infrastructure modification when:
+
+- AWS authentication cannot be established.
+- Fleet discovery does not match the expected environment.
+- Validation detects inconsistent infrastructure state.
+- Canary deployment fails.
+- Batch execution encounters an unrecoverable infrastructure or AWS API failure.
+
+## Technical Documentation
+
+A detailed Engineering Design Document is included in the `docs/` directory, providing a deeper explanation of the architecture, design decisions, implementation strategy, and operational workflow.
+
+The document covers:
+
+- Solution Architecture
+- Engineering Principles
+- Operational Workflow
+- Validation Strategy
+- Canary Deployment
+- Batch Processing
+- Reporting and Auditability
+- Engineering Trade-offs
+- Future Enhancements
+--- 
+## Future Enhancements
+
+Planned improvements include:
+
+- GitHub Actions CI/CD
+- Automated Unit Testing
+- AWS Systems Manager Integration
+- CloudWatch Dashboards
+- SNS Notifications
+- EventBridge Scheduling
+- Parallel Execution with Configurable Concurrency
