@@ -177,9 +177,11 @@ The automation intentionally terminates before infrastructure modification when:
 
 ## Technical Documentation
 
-A detailed Engineering Design Document is included in the `docs/` directory, providing a deeper explanation of the architecture, design decisions, implementation strategy, and operational workflow.
+A detailed **Engineering Design Document** is available here:
 
-The document covers:
+📄 **[Engineering Design Document](docs/ec2-fleet-standardization-engineering-design.pdf)**
+
+The document provides a deeper explanation of:
 
 - Solution Architecture
 - Engineering Principles
