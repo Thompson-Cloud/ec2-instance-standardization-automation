@@ -7,7 +7,7 @@ This project demonstrates a production-inspired workflow for safely standardizin
 
 ## Solution Architecture
 
-![Architecture](assets/architecture.png)
+![Architecture](assets/architecture.svg)
 
 ---
 
